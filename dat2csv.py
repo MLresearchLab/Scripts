@@ -30,6 +30,7 @@
 
 #python CSV library
 import csv
+import re
 
 #print new line character for easier readability
 print('\n')
@@ -53,8 +54,14 @@ with open(af, 'r') as input_file:
         newLine = line.strip('\t').split()
         newLines.append(newLine)
 
+#extract file name without extension
+m = re.match('^[a-zA-Z0-9-_]*', af)
+
+#recompile into variable
+nf = m.group()
+
 #open new file called newFile.csv, which will be written to
-with open('newFile.csv', 'w') as output_file:
+with open(nf+'.csv', 'w') as output_file:
 
     #variable contain the csv write function 
     file_writer = csv.writer(output_file)
